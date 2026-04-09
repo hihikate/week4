@@ -7,7 +7,9 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f0f0f0;
+            background-color: #FFFF00;
+            position: relative;
+            overflow: hidden;
         }
         .game-container {
             margin: 20px auto;
@@ -46,9 +48,54 @@
             display: block;
             bottom: 0;
         }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: linear-gradient(45deg, #FF4500, #FF6347);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(45deg, #FF6347, #FF4500);
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .running-mole {
+            position: absolute;
+            font-size: 30px;
+            animation: runAround 8s linear infinite;
+            z-index: -1;
+        }
+        .running-mole:nth-child(1) { animation-delay: 0s; left: 10%; top: 20%; }
+        .running-mole:nth-child(2) { animation-delay: 2s; left: 20%; top: 50%; }
+        .running-mole:nth-child(3) { animation-delay: 4s; left: 50%; top: 10%; }
+        .running-mole:nth-child(4) { animation-delay: 6s; left: 70%; top: 70%; }
+        .running-mole:nth-child(5) { animation-delay: 1s; left: 80%; top: 30%; }
+        @keyframes runAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50vw, 0); }
+            50% { transform: translate(50vw, 50vh); }
+            75% { transform: translate(0, 50vh); }
+            100% { transform: translate(0, 0); }
+        }
     </style>
 </head>
 <body>
+    <div class="background-moles">
+        <div class="running-mole">🐭</div>
+        <div class="running-mole">🐭</div>
+        <div class="running-mole">🐭</div>
+        <div class="running-mole">🐭</div>
+        <div class="running-mole">🐭</div>
+    </div>
     <h1>打地鼠遊戲</h1>
     <div class="score">分數: <span id="score">0</span></div>
     <div class="game-container">
@@ -77,6 +124,7 @@
     </div>
     <button id="start">開始遊戲</button>
     <br><br>
+    <a href="level2.html">進入第二關</a>
     <a href="index.html">返回首頁</a>
     <script>
         const holes = document.querySelectorAll('.hole');
